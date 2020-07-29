@@ -6,9 +6,13 @@ const MainContainer = styled.div`
   flex-direction: column;
 `;
 
-const Fact = styled.div`
+const Fact = styled.blockquote`
   width: 100%;
+  font-family: 'Times New Roman', sans-serif;
+  font-size: 25px;
 `;
+
+const Timer = styled.div``;
 
 function RandomCatFact(props) {
   const [randomFact, setRandomFact] = React.useState(null)
@@ -44,6 +48,7 @@ function RandomCatFact(props) {
 
   return (
     <MainContainer>
+      <Timer>New cat image will appear in {props.timeLeft} seconds</Timer>
       <Fact>{randomFact}</Fact>
     </MainContainer>
   );

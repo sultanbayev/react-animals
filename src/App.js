@@ -7,6 +7,7 @@ import RandomCatImage from "./Cats/RandomCatImage";
 import RandomDogImage from './Dogs/RandomDogImage';
 import "./App.css";
 import RandomCatFact from "./Cats/RandomCatFact";
+import SelectCatBreed from './Cats/SelectCatBreed';
 
 const MainContainer = styled.div`
   width: 500px;
@@ -16,8 +17,6 @@ const MainContainer = styled.div`
   display: flex;
 `;
 
-const Timer = styled.div``;
-
 function App() {
 
   const [timeLeft, setTimeLeft] = React.useState(30);
@@ -26,7 +25,7 @@ function App() {
     if (timeLeft > 0) {
       setTimeout(() => {
         setTimeLeft(timeLeft - 1);
-      }, 500)
+      }, 1000)
     } else {
       setTimeLeft(30)
     }
@@ -35,12 +34,12 @@ function App() {
   return (
     <MainContainer>
       <Header />
-      <Timer>New cat image will appear in {timeLeft} seconds</Timer>
       <Router>
         <HomePage path="/" timeLeft={timeLeft} />
         <RandomCatImage path="/randomCat" timeLeft={timeLeft} />
         <RandomDogImage path="/randomDog" timeLeft={timeLeft} />
         <RandomCatFact path="/randomFact" timeLeft={timeLeft} />
+        <SelectCatBreed path="/catBreeds" />
       </Router>
     </MainContainer>
   );

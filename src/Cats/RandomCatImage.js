@@ -10,6 +10,8 @@ const Image = styled.img`
   width: 100%;
 `;
 
+const Timer = styled.div``;
+
 function RandomCatImage(props) {
   const [catImageUrl, setCatImageUrl] = React.useState(null);
 
@@ -39,6 +41,7 @@ function RandomCatImage(props) {
 
   return (
     <MainContainer>
+      <Timer>New cat image will appear in {props.timeLeft} seconds</Timer>
       <Image src={catImageUrl} />
     </MainContainer>
   );
