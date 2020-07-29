@@ -25,7 +25,7 @@ function RandomCatImage(props) {
       });
   }, []);
 
-  if (catImageUrl == null) return <div> Loading </div>;
+  if (catImageUrl == null) return <div> Loading another cat... </div>;
 
   return (
     <MainContainer>
