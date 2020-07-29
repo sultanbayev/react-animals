@@ -16,15 +16,31 @@ const MainContainer = styled.div`
   display: flex;
 `;
 
+const Timer = styled.div``;
+
 function App() {
+
+  const [timeLeft, setTimeLeft] = React.useState(30);
+
+  React.useEffect(() => {
+    if (timeLeft > 0) {
+      setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 500)
+    } else {
+      setTimeLeft(30)
+    }
+  }, [timeLeft]);
+
   return (
     <MainContainer>
       <Header />
+      <Timer>New cat image will appear in {timeLeft} seconds</Timer>
       <Router>
-        <HomePage path="/" />
-        <RandomCatImage path="/randomCat" />
-        <RandomDogImage path="/randomDog" />
-        <RandomCatFact path="/randomFact" />
+        <HomePage path="/" timeLeft={timeLeft} />
+        <RandomCatImage path="/randomCat" timeLeft={timeLeft} />
+        <RandomDogImage path="/randomDog" timeLeft={timeLeft} />
+        <RandomCatFact path="/randomFact" timeLeft={timeLeft} />
       </Router>
     </MainContainer>
   );

@@ -15,16 +15,28 @@ function RandomDogImage(props) {
 
     React.useEffect(() => {
         fetch("https://dog.ceo/api/breeds/image/random")
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
-            setDogImageUrl(data.message)
-          });
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                setDogImageUrl(data.message)
+            });
       }, []);
 
+    React.useEffect(() => {
+        if (props.timeLeft <= 0) {
+            fetch("https://dog.ceo/api/breeds/image/random")
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    setDogImageUrl(data.message)
+                });
+        }
+      }, [props.timeLeft, dogImageUrl]);
 
-    if (dogImageUrl == null) return <div> Loading doge... </div>;
+
+    if (dogImageUrl === null) return <div> Loading doge... </div>;
 
     return (
         <MainContainer>

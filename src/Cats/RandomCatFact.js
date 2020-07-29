@@ -10,11 +10,24 @@ const Fact = styled.div`
   width: 100%;
 `;
 
-function RandomCatFact() {
+function RandomCatFact(props) {
   const [randomFact, setRandomFact] = React.useState(null)
 
   React.useEffect(() => {
-    fetch('https://cat-fact.herokuapp.com/facts')
+      fetch('https://cat-fact.herokuapp.com/facts')
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        const facts = data.all;
+        const randomFact = facts[Math.floor(Math.random() * facts.length)].text;
+        setRandomFact(randomFact);
+      });
+  }, [])
+
+  React.useEffect(() => {
+    if (props.timeLeft <= 0) {
+      fetch('https://cat-fact.herokuapp.com/facts')
       .then((response) => {
         return response.json()
       })
@@ -23,8 +36,9 @@ function RandomCatFact() {
         const randomFact = facts[Math.floor(Math.random() * facts.length)].text;
         console.log(randomFact)
         setRandomFact(randomFact);
-      })
-  }, [])
+      });
+    }
+  }, [props.timeLeft])
 
   if (randomFact === null) return <div>Loading random fact...</div>
 
